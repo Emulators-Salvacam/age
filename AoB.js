@@ -1209,10 +1209,10 @@ co.doubleduck.BaseGame.prototype = {
 
 	    // Usamos la escala más pequeña de las dos para asegurar que el contenido 
 	    // siempre quepa en la pantalla sin recortarse (Letterboxing)
-	    //co.doubleduck.BaseGame._scale = Math.min(scaleX, scaleY);
+	    co.doubleduck.BaseGame._scale = Math.min(scaleX, scaleY);
 	    
 	    // Si quieres que el juego ignore el ratio y se estire (no recomendado):
-	    co.doubleduck.BaseGame._scale = scaleX; 
+	    //co.doubleduck.BaseGame._scale = scaleX; 
 	}
 	,handleViewportChanged: function() {
 		if(co.doubleduck.BaseGame._wantLandscape != viewporter.isLandscape()) {

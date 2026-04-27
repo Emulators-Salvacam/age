@@ -1,0 +1,16 @@
+{
+  "version": "1.02",
+  "name": "Age of Barbarians",
+  "description": "Defend your lands against the barbarian hordes and lead your warriors to glory in the battleground.",
+  "launch_path": "/index.html",
+  "icons": {
+    "128": "/icon/icon.png"
+  },
+  "developer": {
+    "name": "Double Duck Ltd.",
+    "url": "http://www.doubleduck.co"
+  },
+  "default_locale": "en",
+  "fullscreen": "true",
+  "orientation": "portrait"
+}

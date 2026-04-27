@@ -1191,18 +1191,28 @@ co.doubleduck.BaseGame.getStage = function() {
 }
 co.doubleduck.BaseGame.prototype = {
 	setScale: function() {
-		var fixedVal = co.doubleduck.BaseGame._viewport.width;
-		var varVal = co.doubleduck.BaseGame._viewport.height;
-		var idealFixed = co.doubleduck.BaseGame.MAX_WIDTH;
-		var idealVar = co.doubleduck.BaseGame.MAX_HEIGHT;
-		if(co.doubleduck.BaseGame._wantLandscape) {
-			fixedVal = co.doubleduck.BaseGame._viewport.height;
-			varVal = co.doubleduck.BaseGame._viewport.width;
-			idealFixed = co.doubleduck.BaseGame.MAX_HEIGHT;
-			idealVar = co.doubleduck.BaseGame.MAX_WIDTH;
-		}
-		var regScale = varVal / idealVar;
-		if(fixedVal >= varVal) co.doubleduck.BaseGame._scale = regScale; else if(idealFixed * regScale < fixedVal) co.doubleduck.BaseGame._scale = fixedVal / idealFixed; else co.doubleduck.BaseGame._scale = regScale;
+	    var fixedVal = co.doubleduck.BaseGame._viewport.width;
+	    var varVal = co.doubleduck.BaseGame._viewport.height;
+	    var idealFixed = co.doubleduck.BaseGame.MAX_WIDTH;
+	    var idealVar = co.doubleduck.BaseGame.MAX_HEIGHT;
+	    
+	    if(co.doubleduck.BaseGame._wantLandscape) {
+	        fixedVal = co.doubleduck.BaseGame._viewport.height;
+	        varVal = co.doubleduck.BaseGame._viewport.width;
+	        idealFixed = co.doubleduck.BaseGame.MAX_HEIGHT;
+	        idealVar = co.doubleduck.BaseGame.MAX_WIDTH;
+	    }
+
+	    // Calculamos escalas para ambos ejes
+	    var scaleX = fixedVal / idealFixed;
+	    var scaleY = varVal / idealVar;
+
+	    // Usamos la escala más pequeña de las dos para asegurar que el contenido 
+	    // siempre quepa en la pantalla sin recortarse (Letterboxing)
+	    //co.doubleduck.BaseGame._scale = Math.min(scaleX, scaleY);
+	    
+	    // Si quieres que el juego ignore el ratio y se estire (no recomendado):
+	    co.doubleduck.BaseGame._scale = scaleX; 
 	}
 	,handleViewportChanged: function() {
 		if(co.doubleduck.BaseGame._wantLandscape != viewporter.isLandscape()) {
